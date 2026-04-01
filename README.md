@@ -31,7 +31,7 @@ By the end of this lesson, you will be able to:
 |----------|-------------|-----------|
 | [Pre-Class](./pre-class.md) | Metadata queries, JOIN types, DbGate setup | 30–45 min |
 | [Lesson Plan](./lesson.md) | Instructor guide for the 3-hour hands-on session | 3 hours |
-| [Post-Class](./assignment.md) | Insurance Auditor — multi-table analysis challenge | 45–60 min |
+| [Assignment](./assignment.md) | Insurance Auditor — multi-table analysis challenge | 45–60 min |
 | [Reference](./reference.md) | Advanced SQL cheat sheet — JOINs, window functions, CTEs | As needed |
 
 ---
