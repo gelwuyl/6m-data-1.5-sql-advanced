@@ -131,9 +131,20 @@ Ref: claim.client_id > client.id
 Ref: client.address_id > address.id
 ```
 
+![ERD](./assets/erd.png)
+
 `car_id`, `client_id`, and `address_id` are foreign keys.
 
 **The 4 common types of joins:**
+
+- Inner join
+- Left join
+- Right join
+- Full (Outer) join
+
+An overview of the different types of joins:
+
+![Joins](./assets/join_types.png)
 
 ##### Inner Join
 
@@ -144,6 +155,8 @@ SELECT *
 FROM claim
 INNER JOIN car ON claim.car_id = car.id;
 ```
+
+You can also use the `JOIN` keyword instead of `INNER JOIN`. They are the same. But it's good practice to use `INNER JOIN` to make your query more readable.
 
 > Inner join claim and client.
 >
@@ -184,6 +197,18 @@ FULL JOIN car ON claim.car_id = car.id;
 ##### Union
 
 A union combines the results of two or more queries into a single result set. The queries must have the same number of columns and compatible data types.
+
+![Joins](./assets/join_vs_union.png)
+
+It is not applicable for this database, but assuming we have an employees table with the following columns:
+
+- id
+- name
+- email
+- phone
+
+And a contractors table with the same columns. We can use a union to combine the two tables: 
+**Note: the following code is to show the syntax only**
 
 `UNION` removes duplicate rows. Use `UNION ALL` to keep duplicates.
 
@@ -285,12 +310,30 @@ FROM claim;
 
 `RANK()` gives each row a position (1st, 2nd, 3rd, …) within a group, allowing ties to share the same rank and leaving gaps after ties.
 
+Sample table:
+
+| claim\_id | car\_id | claim\_amt |
+| ----: | ----: | ----: |
+| 1 | A | 1000 |
+| 2 | A | 800 |
+| 3 | A | 800 |
+| 4 | A | 500 |
+
 ```sql
 SELECT
   id, car_id, claim_amt,
   RANK() OVER (PARTITION BY car_id ORDER BY claim_amt DESC) AS rank
 FROM claim;
 ```
+
+Result:
+
+| claim\_id | car\_id | claim\_amt | amt\_rank |
+| ----: | ----: | ----: | ----: |
+| 1 | A | 1000 | 1 |
+| 2 | A | 800 | 2 |
+| 3 | A | 800 | 2 |
+| 4 | A | 500 | 4 |
 
 Ties get the same rank, and the next rank after a tie skips accordingly (e.g., two rows tied at rank 2 are followed by rank 4).
 
@@ -338,6 +381,8 @@ A CTE (Common Table Expression) is like writing down a recipe step before you st
 
 A subquery is a query nested inside another query.
 
+To find the cars that have been involved in a claim:
+
 ```sql
 SELECT id, resale_value, car_type
 FROM car
@@ -349,6 +394,8 @@ WHERE id IN (
 
 **Correlated Subquery** — the inner query references the outer query:
 
+To find the cars that have been involved in a claim, and the claim amount is greater than 10% of the car's resale value:
+
 ```sql
 SELECT id, resale_value, car_type
 FROM car c
@@ -359,7 +406,9 @@ WHERE id IN (
 );
 ```
 
-**EXISTS operator:**
+**EXISTS operator:** - to check if a subquery returns any rows.
+
+To find the cars that have been involved in a claim:
 
 ```sql
 SELECT id, resale_value, car_type
