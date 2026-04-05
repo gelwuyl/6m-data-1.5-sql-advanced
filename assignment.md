@@ -6,7 +6,7 @@ Write the SQL statements for the following questions.
 
 ## Instructions
 
-Paste the answer as SQL in the answer code section below each question.
+Write your SQL answers in the code blocks below each question. Check your work against the solution key at the bottom. To share your work, post in **#peer-reviews** on Discord. For questions, post in **#questions**.
 
 ### Question 1
 
@@ -50,11 +50,16 @@ Create a comprehensive SQL report that answers the following in a single script 
 3. **Efficiency:** Only show the **top 2** highest-claiming clients per state.  
 4. **Final Output:** The table should include: Client Name, State, Car Type, Total Claimed, State Rank.
 
-Submission:  
-A single .sql file with comments explaining your logic.
+**Submission:** Save your work as a `.sql` file with comments explaining your logic. Share in **#peer-reviews** on Discord, or keep it in your own notes if self-studying.
 
+---
 
-## **Solution** 
+## **✅ Solutions**
+
+*Attempt all questions before expanding the solutions below.*
+
+<details>
+<summary>Click to reveal — Questions 1–3 Solutions</summary>
 
 ### Question 1
 
@@ -100,6 +105,10 @@ JOIN AvgResale a ON c.car_use = a.car_use
 WHERE c.resale_value < a.avg_resale_value;
 ```
 
+</details>
+
+<details>
+<summary>Click to reveal — Level Up: Insurance Auditor Project Solution</summary>
 
 ### Complete SQL Solution for Insurance Auditor Project
 
@@ -233,5 +242,4 @@ The solution employs a four-stage CTE pipeline:
 
 This solution directly addresses the CEO's concern about disproportionately expensive car types in specific cities by providing actionable insights into high-risk client profiles across geographic regions.
 
-
-
+</details>
