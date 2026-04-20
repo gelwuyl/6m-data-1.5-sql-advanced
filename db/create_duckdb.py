@@ -10,3 +10,4 @@ con.sql(
     CREATE TABLE client AS SELECT * FROM read_csv_auto('db/client.csv', HEADER=TRUE);
     """
 )
+con.sql("SELECT * FROM client LIMIT 5;")
